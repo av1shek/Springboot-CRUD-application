@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment               # Specifies the type of resource to be created (deployment)
+metadata:
+  name: mysqlcontainer
+  namespace: mysqlnamespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysqlcontainer
+  template:
+    metadata:
+      labels:
+        app: mysqlcontainer
+    spec:
+      containers:
+      - name: mysql-container
+        image: mysql:8.1.0
+        resources: {}    
+        env:
+        - name: MYSQL_ROOT_PASSWORD       # Specifies the environment variable name
+          valueFrom:
+            secretKeyRef:
+              name: mysql                # Specifies the name of the secret
+              key: mysql.password       # Specifies the key of the secret

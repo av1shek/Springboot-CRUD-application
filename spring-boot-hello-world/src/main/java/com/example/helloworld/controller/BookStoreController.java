@@ -1,0 +1,70 @@
+package com.example.helloworld.controller;
+
+import com.example.helloworld.entity.Book;
+import com.example.helloworld.services.IBookStoreService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+
+@Controller
+@RequestMapping("bookservice")
+@Slf4j
+public class BookStoreController {
+	
+	@Autowired
+	private IBookStoreService service;
+	
+	@GetMapping("books")
+	public ResponseEntity<List<Book>> getBooks(){
+		log.info("Inside getBooks method of BookStoreController");
+		List<Book> books = service.getBooks();
+		return new ResponseEntity<List<Book>>(books, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("books/{id}")
+	public ResponseEntity<Book> getBook(@PathVariable("id") Integer id){
+		log.info("Inside getBook method of BookStoreController");
+		Book book = service.getBook(id);
+		return new ResponseEntity<Book>(book, HttpStatus.OK);
+	}
+	
+	@PostMapping("books")
+	public ResponseEntity<Book> createBook(@RequestBody Book book){
+		log.info("Inside createBook method of BookStoreController");
+		Book b = service.createBook(book);
+		return new ResponseEntity<Book>(b, HttpStatus.OK);
+		
+	}
+	
+	@PutMapping("books/{id}")
+	public ResponseEntity<Book> updateBook(@PathVariable("id") int id, @RequestBody Book book){
+		log.info("Inside updateBook method of BookStoreController");
+		Book b = service.updateBook(id, book);
+		return new ResponseEntity<Book>(b, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("books/{id}")
+	public ResponseEntity<String> deleteBook(@PathVariable("id") int id){
+		log.info("Inside deleteBook method of BookStoreController");
+		boolean isDeleted = service.deleteBook(id);
+		if(isDeleted){
+			String responseContent = "Book has been deleted successfully";
+			return new ResponseEntity<String>(responseContent,HttpStatus.OK);
+		}
+		String error = "Error while deleting book from database";
+		return new ResponseEntity<String>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+}

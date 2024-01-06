@@ -17,3 +17,15 @@ spec:
       - name: av1shek-hello-world
         image: av1shek/hello-world:latest   # Specifies the containerized application image to be used
         resources: {}             # Resource constraints for the container (empty in this case)
+        env:
+        - name: MYSQL_ROOT_PASSWORD       # Specifies the environment variable name
+          valueFrom:
+            secretKeyRef:
+              name: mysql                 # Specifies the name of the secret
+              key: mysql.password         # Specifies the key of the secret
+        - name: MYSQL_ROOT_USERNAME       # Specifies the environment variable name
+          valueFrom:
+            secretKeyRef:
+              name: mysql                # Specifies the name of the secret
+              key: mysql.user       # Specifies the key of the secret
+  

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service          # Specifies the type of resource to be created (service)
+metadata:
+  name: mysqlservice
+  namespace: mysqlnamespace
+spec:
+  selector:
+    app: mysqlcontainer
+  ports:
+    - protocol: TCP
+      port: 81            # port exposed to the outside world (inside mysqlnamespace)
+      targetPort: 3306    # mysql application running on port 3306
+  type: NodePort
