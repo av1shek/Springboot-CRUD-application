@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-api          # Specifies the name of the deployment, making it identifiable
+  namespace: mynamespace         # Assigns the deployment to a specific namespace (mynamespace)
+spec:
+  replicas: 1                    # Defines the desired number of replicas (pods) to be created (1 in this case)
+  selector:
+    matchLabels:
+      app: hello-world-api       # Selects pods based on the specified label (app: hello-world-api)
+  template:
+    metadata:
+      labels:
+        app: hello-world-api     # Labels the pods created by this deployment with the specified label
+    spec:
+      containers:
+      - name: av1shek-hello-world
+        image: av1shek/hello-world:latest   # Specifies the containerized application image to be used
+        resources: {}             # Resource constraints for the container (empty in this case)
