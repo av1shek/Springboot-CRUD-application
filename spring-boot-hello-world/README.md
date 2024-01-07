@@ -4,6 +4,8 @@
 
 ## How to Run Application
 
+Please check out <a href="https://av1shek.notion.site/av1shek/Deploying-an-Application-with-Kubernetes-1bc1f9a48ea749b89cbd8abbfb294793">this blog</a> post for complete details.
+
 **Start the application using any of the commands mentioned below**
 
 > **Note:** First two commands need to run inside the root folder of this project i.e inside the **spring-boot-hello-world** folder
