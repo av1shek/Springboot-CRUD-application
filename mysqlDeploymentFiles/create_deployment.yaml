@@ -21,5 +21,12 @@ spec:
         - name: MYSQL_ROOT_PASSWORD       # Specifies the environment variable name
           valueFrom:
             secretKeyRef:
-              name: mysql                # Specifies the name of the secret
-              key: mysql.password       # Specifies the key of the secret
+              name: mysql
+              key: mysql.password
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
