@@ -1,6 +1,6 @@
-# Spring Boot Hello World
+# Spring Boot CRUD Application
 
-**A simple Spring Boot 2.x app to send hello world message to a user**
+**A simple Spring Boot 2.x app to perform CRUD operations**
 
 ## How to Run Application
 
@@ -21,31 +21,26 @@
   <br/>```Right click on HelloWorldApplication.java and click on 'Run' option```
   <br/><br/>
 
-> **Note:** By default spring boot application starts on port number 8080. If port 8080 is occupied in your system then you can change the port number by uncommenting and updating the **server.port** property inside the **application.properties** file that is available inside the **src > main > resources** folder.
-
-<br/>
-
-**Send an HTTP GET request to '/hello' endpoint using any of the two methods**
-
-- **Browser or REST client**
-  <br/>```http://localhost:8080/hello```
 
 
-- **cURL**
-  <br/>```curl --request GET 'http://localhost:8080/hello'```
+**Curl for different endpoints**
 
+Note: Update the port number.
+- Curl for getting hello world response.
+  <br/>```curl --request GET 'http://localhost:64724/hello/<name>'```
+  
+- Curl for storing a book details in database
+  <br/>```curl --location 'http://localhost:64724/bookservice/books' \
+--header 'Content-Type: application/json' \
+--data '  {
+    "name": "C++",
+    "author": "Abhishek",
+    "publication": "Rajput Publication",
+    "category": "Computer Programming",
+    "pages": 1500,
+    "price": 240
+  }
+'```
 
-## How to Run Unit Test Cases
-
-**Run the test cases using any of the commands mentioned below**
-
-> **Note:** These commands need to run inside the root folder of this project i.e inside the **spring-boot-hello-world** folder
-
-- **To run all the test cases**
-  <br/>```mvn test```
-
-
-- **To run a particular test class**
-  <br/>```mvn -Dtest=HelloWorldControllerTest test```
-  <br/>or
-  <br/>```mvn -Dtest=HelloWorldApplicationTests test```
+- Curl for getting all the stored book details
+<br/>```curl --location 'http://localhost:64724/bookservice/books'```
