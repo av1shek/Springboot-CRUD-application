@@ -1,6 +1,9 @@
-# Spring Boot Hello World
+# Spring Boot CRUD Application
 
-**A simple Spring Boot 2.x app to send hello world message to a user**
+**A simple Spring Boot 2.x app to perform CRUD operations**
+<br/>Will start from simple hello world application in `main` branch and proceed further to develop a CRUD application in other branch.
+
+Please check out <a href="https://av1shek.notion.site/av1shek/Deploying-an-Application-with-Kubernetes-1bc1f9a48ea749b89cbd8abbfb294793">this blog</a> post for complete explanation
 
 ## How to Run Application
 
@@ -21,31 +24,13 @@
   <br/>```Right click on HelloWorldApplication.java and click on 'Run' option```
   <br/><br/>
 
-> **Note:** By default spring boot application starts on port number 8080. If port 8080 is occupied in your system then you can change the port number by uncommenting and updating the **server.port** property inside the **application.properties** file that is available inside the **src > main > resources** folder.
-
-<br/>
-
-**Send an HTTP GET request to '/hello' endpoint using any of the two methods**
-
-- **Browser or REST client**
-  <br/>```http://localhost:8080/hello```
 
 
-- **cURL**
-  <br/>```curl --request GET 'http://localhost:8080/hello'```
+**Curl for different endpoints**
 
+Note: Update the port number.
+- Curl for getting hello world response.
+  <br/>```curl --request GET 'http://localhost:64724/hello'```
+  
 
-## How to Run Unit Test Cases
-
-**Run the test cases using any of the commands mentioned below**
-
-> **Note:** These commands need to run inside the root folder of this project i.e inside the **spring-boot-hello-world** folder
-
-- **To run all the test cases**
-  <br/>```mvn test```
-
-
-- **To run a particular test class**
-  <br/>```mvn -Dtest=HelloWorldControllerTest test```
-  <br/>or
-  <br/>```mvn -Dtest=HelloWorldApplicationTests test```
+Next branch to be followed: `connecting-database`
